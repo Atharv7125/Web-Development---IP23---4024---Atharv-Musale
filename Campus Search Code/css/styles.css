@@ -1,0 +1,284 @@
+/* General styles for all pages */
+body {
+    font-family: 'Roboto', sans-serif; /* New font style */
+    background-color: #fce4ec; /* Light pink background for all pages */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+header {
+    background-color: #3B5998; /* Blue header */
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .logo {
+    width: 50px; /* Size of logo */
+    margin-right: 15px;
+}
+
+/* Responsive header for smaller screens */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+    header .logo {
+        margin-bottom: 10px;
+    }
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* Search Section */
+#search {
+    text-align: center;
+    padding: 40px;
+    background-color: #3498db; /* Cyan color for search section */
+    border-bottom: 4px solid #3B5998;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#search-bar {
+    width: 60%;
+    padding: 15px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: 2px solid #3498db;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive search bar */
+@media (max-width: 768px) {
+    #search-bar {
+        width: 90%; /* Adjust width on smaller screens */
+    }
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #3B5998;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 10px; /* Ensure the button is next to the search box */
+}
+
+button[type="submit"]:hover {
+    background-color: #2c4b84;
+}
+
+#search label {
+    color: white; /* White color for "Search Colleges:" label */
+}
+
+/* Popular Colleges Section */
+#popular-colleges {
+    padding: 50px;
+    background-color: #fce4ec; /* Light pink background */
+}
+
+.college-list {
+    display: flex;
+    overflow-x: auto; /* Horizontal scrolling for automatic sliding */
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+.college-list::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for cleaner look */
+}
+
+.college {
+    min-width: 250px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.college img {
+    width: 250px;  /* Fixed width */
+    height: 150px; /* Fixed height */
+    object-fit: cover; /* Ensures images are cropped uniformly to fit the box */
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.college p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3B5998;
+    color: white;
+}
+
+/* Result Page Styles */
+#college-info {
+    padding: 40px;
+    text-align: center; /* Center content */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    margin: 50px auto;
+    width: 80%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Responsive result page */
+@media (max-width: 768px) {
+    #college-info {
+        padding: 20px;
+        width: 90%; /* Adjust content width */
+    }
+    #college-info h2 {
+        font-size: 1.8rem; /* Slightly smaller heading */
+    }
+}
+
+#college-info h2 {
+    color: #3B5998;
+    margin-bottom: 20px;
+}
+
+.college-image {
+    width: 100%;
+    max-width: 370px; /* Adjust width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures the image fits within the box without distortion */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#college-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 0;
+    text-align: center;
+    background-color: #fce4ec; /* Light pink background */
+}
+
+.college-info {
+    width: 80%; /* Adjust as necessary */
+    max-width: 1000px; /* Prevent the content from becoming too wide */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.college-info h2, .college-info h3, .college-info p, .college-info a, .college-info ul {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none; /* Remove bullets from the list */
+    padding: 0;
+}
+
+ul li {
+    margin: 5px 0;
+}
+
+#college-info a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+#college-info a:hover {
+    text-decoration: underline;
+}
+
+/* Contact form */
+#contact {
+    padding: 40px;
+    background-color: #fce4ec;
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+    max-width: 600px;
+    width: 100%;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #673ab7;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #673ab7;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="submit"] {
+    background-color: #673ab7;
+    color: white;
+    cursor: pointer;
+    padding: 15px 30px;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #512da8;
+}
+
+#contact h2 {
+    color: black;
+}
+
+#contact a {
+    color: white; /* White color for "Home" link */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slideIn {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes zoomIn {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}

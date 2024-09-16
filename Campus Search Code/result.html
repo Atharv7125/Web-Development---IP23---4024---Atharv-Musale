@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Results</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <!-- Header with logo and title -->
+    <header>
+        <img src="images/logo.png" alt="Campus Logo" class="logo">
+        <h1>Campus Search</h1>
+    </header>
+
+    <!-- Main content section to display the college info -->
+    <section id="college-details">
+        <div class="college-info">
+            <h2 id="college-name"></h2> <!-- College Name -->
+            <img id="college-img" alt="College Image" class="college-image">
+            
+            <!-- College overview, address, courses, and website -->
+            <h3>Overview</h3>
+            <p id="college-description"></p> <!-- College Overview -->
+            
+            <h3>Address</h3>
+            <p id="college-address"></p> <!-- College Address -->
+            
+            <h3>Courses Offered</h3>
+            <ul id="college-courses"></ul> <!-- List of Courses -->
+            
+            <h3>Website</h3>
+            <a id="college-website" href="" target="_blank">Visit College Website</a>
+        </div>
+    </section>
+
+    <!-- Footer with links -->
+    <footer>
+        <p>&copy; 2024 Campus Search. All rights reserved.</p>
+        <nav>
+            <ul>
+                <li><a href="contact.html" style="color: white;">Contact Us</a></li>
+                <li><a href="index.html" style="color: white;">Home</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script>
+        // College information for different colleges
+        const collegeData = {
+            "iima": {
+                name: "IIM Ahmedabad",
+                image: "images/iim ahemdabad.jpeg",
+                description: "IIM Ahmedabad is one of the leading management institutes in India, offering top-notch MBA programs.",
+                address: "Vastrapur, Ahmedabad, Gujarat 380015",
+                courses: ["MBA", "PGP", "Executive MBA"],
+                website: "https://www.iima.ac.in"
+            },
+            "iitb": {
+                name: "IIT Bombay",
+                image: "images/iitb.jpeg",
+                description: "IIT Bombay is known for its engineering and management programs, fostering innovation and excellence.",
+                address: "Powai, Mumbai, Maharashtra 400076",
+                courses: ["B.Tech", "MBA", "M.Tech"],
+                website: "https://www.iitb.ac.in"
+            },
+            "xlri": {
+                name: "XLRI Jamshedpur",
+                image: "images/xlri.jpeg",
+                description: "XLRI is a renowned management institute in India, offering various postgraduate programs in management.",
+                address: "C. H. Area (East), Jamshedpur, Jharkhand 831001",
+                courses: ["PGDM (HR)", "PGDM (BM)", "Executive PGDM"],
+                website: "https://www.xlri.ac.in"
+            },
+            "bits": {
+                name: "BITS Pilani",
+                image: "images/bits pilani.jpg",
+                description: "BITS Pilani is a leading institution for higher education, known for its programs in engineering and management.",
+                address: "Pilani, Rajasthan 333031",
+                courses: ["B.E.", "MBA", "M.Sc."],
+                website: "https://www.bits-pilani.ac.in"
+            },
+            "sibm": {
+                name: "Symbiosis Institute of Business Management",
+                image: "images/sibm.jpg",
+                description: "SIBM Pune is a prestigious management school, offering comprehensive MBA programs and a vibrant campus life.",
+                address: "Symbiosis Knowledge Village, Lavale, Pune, Maharashtra 412115",
+                courses: ["MBA", "Executive MBA"],
+                website: "https://www.sibm.edu"
+            },
+            "iiitd": {
+                name: "IIIT Delhi",
+                image: "images/iiitd.png",
+                description: "IIIT Delhi is a top IT institute offering undergraduate and postgraduate programs in computer science.",
+                address: "Okhla Industrial Estate, Phase III, New Delhi, Delhi 110020",
+                courses: ["B.Tech", "M.Tech", "Ph.D."],
+                website: "https://www.iiitd.ac.in"
+            },
+            "fms": {
+                name: "Faculty of Management Studies, Delhi University",
+                image: "images/fms.jpg",
+                description: "FMS Delhi offers premier MBA programs and is known for its high-quality management education.",
+                address: "North Campus, University of Delhi, Delhi 110007",
+                courses: ["MBA", "Executive MBA", "Ph.D."],
+                website: "http://www.fms.edu"
+            },
+            "jbims": {
+                name: "Jamnalal Bajaj Institute of Management Studies (JBIMS)",
+                image: "images/jbims.jpg",
+                description: "JBIMS Mumbai is a leading B-School known for its comprehensive MBA and management programs.",
+                address: "164, Sydenham College Road, Churchgate, Mumbai, Maharashtra 400020",
+                courses: ["MBA", "MMS", "Ph.D."],
+                website: "https://jbims.edu"
+            },
+            "nitie": {
+                name: "National Institute of Industrial Engineering (NITIE)",
+                image: "images/nitie.jpeg",
+                description: "NITIE Mumbai is a premier institute offering top industrial management and engineering programs.",
+                address: "Vihar Lake, Mumbai, Maharashtra 400087",
+                courses: ["PGDIM", "PGDIE", "Fellow Programs"],
+                website: "https://www.nitie.edu"
+            },
+            "nmims": {
+                name: "Narsee Monjee Institute of Management Studies (NMIMS)",
+                image: "images/nmims.jpg",
+                description: "NMIMS is a globally reputed institute offering diverse undergraduate and postgraduate programs in management, engineering, and other fields.",
+                address: "V. L. Mehta Road, Vile Parle (W), Mumbai, Maharashtra 400056",
+                courses: ["MBA", "BBA", "M.Tech"],
+                website: "https://www.nmims.edu"
+            },
+            "iitd": {
+                name: "IIT Delhi",
+                image: "images/iit delhi.jpg",
+                description: "Indian Institute of Technology Delhi is a top-ranking engineering institute known for academic excellence.",
+                address: "Hauz Khas, New Delhi, Delhi 110016",
+                courses: ["B.Tech", "M.Tech", "Ph.D."],
+                website: "https://www.iitd.ac.in"
+            },
+            "iimb": {
+                name: "IIM Bangalore",
+                image: "images/iim bangalore.jpg",
+                description: "IIM Bangalore is one of the premier management institutes in India, offering MBA and Executive programs.",
+                address: "Bannerghatta Road, Bangalore, Karnataka 560076",
+                courses: ["MBA", "Executive MBA", "PGP"],
+                website: "https://www.iimb.ac.in"
+            },
+            "iimc": {
+                name: "IIM Calcutta",
+                image: "images/iimc.jpg",
+                description: "IIM Calcutta is known for its world-class management programs and research excellence.",
+                address: "Diamond Harbour Road, Kolkata, West Bengal 700104",
+                courses: ["MBA", "PGP", "Executive MBA"],
+                website: "https://www.iimcal.ac.in"
+            },
+            "iitkgp": {
+                name: "IIT Kharagpur",
+                image: "images/iitkgp.jpeg",
+                description: "IIT Kharagpur offers cutting-edge engineering and technology programs and is renowned for its research contributions.",
+                address: "Kharagpur, West Bengal 721302",
+                courses: ["B.Tech", "M.Tech", "Ph.D."],
+                website: "https://www.iitkgp.ac.in"
+            },
+            "iitm": {
+                name: "IIT Madras",
+                image: "images/iitm.jpg",
+                description: "IIT Madras is a top engineering institute, offering a wide range of technical and research programs.",
+                address: "Sardar Patel Road, Chennai, Tamil Nadu 600036",
+                courses: ["B.Tech", "M.Tech", "Ph.D."],
+                website: "https://www.iitm.ac.in"
+            },
+            "iitk": {
+                name: "IIT Kanpur",
+                image: "images/iitk.jpg",
+                description: "IIT Kanpur is known for its excellence in engineering, science, and research programs.",
+                address: "Kalyanpur, Kanpur, Uttar Pradesh 208016",
+                courses: ["B.Tech", "M.Tech", "Ph.D."],
+                website: "https://www.iitk.ac.in"
+            },
+            "spjimr": {
+                name: "SP Jain Institute of Management and Research",
+                image: "images/spjimr.jpg",
+                description: "SPJIMR is a leading B-School in India, known for its innovative management programs.",
+                address: "Bhavan's College Campus, Mumbai, Maharashtra 400058",
+                courses: ["MBA", "Executive MBA", "PGDM"],
+                website: "https://www.spjimr.org"
+            },
+            "imi": {
+                name: "International Management Institute (IMI) Delhi",
+                image: "images/imi.jpg",
+                description: "IMI Delhi is one of India’s premier business schools, offering programs in management and research.",
+                address: "B-10, Qutab Institutional Area, Tara Crescent, New Delhi, Delhi 110016",
+                courses: ["PGDM", "Executive PGDM", "FPM"],
+                website: "https://www.imi.edu/delhi"
+            },
+            "mdi": {
+                name: "Management Development Institute (MDI) Gurgaon",
+                image: "images/mdi.jpg",
+                description: "MDI Gurgaon is a top business school, offering world-class MBA and management programs.",
+                address: "Mehrauli Road, Sukhrali, Gurgaon, Haryana 122007",
+                courses: ["PGDM", "Executive PGDM", "FPM"],
+                website: "https://www.mdi.ac.in"
+            },
+            "ibsat": {
+                name: "IBS Hyderabad",
+                image: "images/ibsat.jpg",
+                description: "IBS Hyderabad is known for its robust management programs, producing skilled professionals.",
+                address: "Dontanapally, Shankarpally Road, Hyderabad, Telangana 501203",
+                courses: ["MBA", "BBA", "Executive MBA"],
+                website: "https://www.ibshyderabad.org"
+            },
+            "isbf": {
+                name: "Indian School of Business (ISB)",
+                image: "images/isbh.jpg",
+                description: "ISB offers world-class management programs with a focus on research and innovation.",
+                address: "Gachibowli, Hyderabad, Telangana 500111",
+                courses: ["PGP", "Executive MBA"],
+                website: "https://www.isb.edu"
+            },
+            "tiss": {
+                name: "Tata Institute of Social Sciences",
+                image: "images/tiss.jpg",
+                description: "TISS Mumbai offers diverse programs in social sciences and public policy, including top-ranked management courses.",
+                address: "V.N. Purav Marg, Deonar, Mumbai, Maharashtra 400088",
+                courses: ["MBA (HRM)", "MA", "MSW"],
+                website: "https://www.tiss.edu"
+            },
+            "imt": {
+                name: "Institute of Management Technology (IMT) Ghaziabad",
+                image: "images/imt.jpg",
+                description: "IMT Ghaziabad is a leading business school offering a wide range of MBA and executive programs.",
+                address: "Raj Nagar, Ghaziabad, Uttar Pradesh 201001",
+                courses: ["MBA", "PGDM", "Executive MBA"],
+                website: "https://www.imt.edu"
+            },
+            "simsr": {
+                name: "K.J. Somaiya Institute of Management Studies and Research",
+                image: "images/simsr.jpeg",
+                description: "SIMSR Mumbai offers world-class MBA programs with an emphasis on experiential learning and industry exposure.",
+                address: "Vidyanagar, Vidyavihar East, Mumbai, Maharashtra 400077",
+                courses: ["MBA", "Executive MBA", "PGDM"],
+                website: "https://simsr.somaiya.edu"
+            },
+            "vgsom": {
+                name: "Vinod Gupta School of Management (VGSOM), IIT Kharagpur",
+                image: "images/vgsom.jpg",
+                description: "VGSOM at IIT Kharagpur is a premier management school offering MBA and executive programs.",
+                address: "IIT Kharagpur, Kharagpur, West Bengal 721302",
+                courses: ["MBA", "Executive MBA", "Ph.D."],
+                website: "https://som.iitkgp.ac.in"
+            },
+            "tapmi": {
+                name: "T.A. Pai Management Institute (TAPMI)",
+                image: "images/tapmi.jpg",
+                description: "TAPMI is a top-ranked business school located in Manipal, offering a wide range of postgraduate management programs.",
+                address: "Manipal, Karnataka 576104",
+                courses: ["PGDM", "PGDM-HRM", "Executive PGDM"],
+                website: "https://www.tapmi.edu.in"
+            },
+            "scmhrd": {
+                name: "Symbiosis Centre for Management and Human Resource Development (SCMHRD)",
+                image: "images/scmhrd.jpg",
+                description: "SCMHRD is a top business school in Pune, offering specialized MBA programs with a focus on HR and management.",
+                address: "Symbiosis Infotech Campus, Hinjawadi, Pune, Maharashtra 411057",
+                courses: ["MBA", "Executive MBA"],
+                website: "https://www.scmhrd.edu"
+            },
+            "ximb": {
+                name: "Xavier Institute of Management Bhubaneswar (XIMB)",
+                image: "images/ximb.jpg",
+                description: "XIMB is a premier management institute offering a variety of management programs, known for its academic rigor.",
+                address: "Xavier Square, Bhubaneswar, Odisha 751013",
+                courses: ["MBA", "Executive MBA"],
+                website: "https://www.ximb.edu.in"
+            },
+            "ifmr": {
+                name: "IFMR Graduate School of Business (IFMR GSB), Krea University",
+                image: "images/ifmr.jpg",
+                description: "IFMR GSB offers management programs with a strong foundation in finance and economics, located within Krea University.",
+                address: "Sricity, Andhra Pradesh 517646",
+                courses: ["MBA", "Executive MBA"],
+                website: "https://www.ifmr.ac.in"
+            },
+            "irma": {
+                name: "Institute of Rural Management Anand (IRMA)",
+                image: "images/irma.jpg",
+                description: "IRMA focuses on management education with a rural development perspective, offering unique programs.",
+                address: "Anand, Gujarat 388001",
+                courses: ["PGDM-RM", "FPM", "Executive PGDM"],
+                website: "https://www.irma.ac.in"
+            },
+            "iisc": {
+                name: "Indian Institute of Science (IISc) Bangalore",
+                image: "images/iisc.jpg",
+                description: "IISc is India's premier institute for advanced scientific and engineering research and education.",
+                address: "Bangalore, Karnataka 560012",
+                courses: ["M.Tech", "M.Sc", "Ph.D."],
+                website: "https://www.iisc.ac.in"
+            },
+            "iift": {
+                name: "Indian Institute of Foreign Trade (IIFT) Delhi",
+                image: "images/iift.jpg",
+                description: "IIFT Delhi offers specialized MBA programs in international business and trade management.",
+                address: "Qutab Institutional Area, Delhi 110016",
+                courses: ["MBA-IB", "Executive MBA", "Ph.D."],
+                website: "https://www.iift.edu"
+            },
+            "mdi-murshidabad": {
+                name: "MDI Murshidabad",
+                image: "images/mdim.jpg",
+                description: "MDI Murshidabad is a branch of the renowned MDI Gurgaon, offering management programs in eastern India.",
+                address: "Murshidabad, West Bengal 742235",
+                courses: ["PGDM", "Executive PGDM"],
+                website: "https://www.mdim.ac.in"
+            },
+            "goa-institute-of-management": {
+                name: "Goa Institute of Management (GIM)",
+                image: "images/gim.jpg",
+                description: "GIM is a well-known management institute in Goa, providing quality management education with global standards.",
+                address: "Sanquelim Campus, Goa 403505",
+                courses: ["PGDM", "PGDM-Healthcare", "Executive PGDM"],
+                website: "https://www.gim.ac.in"
+            },
+            "nmims-bangalore": {
+                name: "NMIMS Bangalore",
+                image: "images/nmimsb.jpg",
+                description: "NMIMS Bangalore is part of the prestigious NMIMS group, offering various management programs.",
+                address: "Bannerghatta Road, Bangalore, Karnataka 560076",
+                courses: ["MBA", "Executive MBA", "PGDM"],
+                website: "https://bangalore.nmims.edu"
+            },
+            "xime": {
+                name: "Xavier Institute of Management and Entrepreneurship (XIME)",
+                image: "images/xime.jpg",
+                description: "XIME Bangalore offers management programs focusing on entrepreneurship and business innovation.",
+                address: "Electronics City Phase II, Bangalore, Karnataka 560100",
+                courses: ["PGDM", "Executive PGDM"],
+                website: "https://www.xime.org"
+            },
+            "imi-bhubaneswar": {
+                name: "International Management Institute (IMI) Bhubaneswar",
+                image: "images/imi-bhu.jpg",
+                description: "IMI Bhubaneswar is part of the IMI group, providing MBA programs in eastern India with a strong industry focus.",
+                address: "IDCO Plot No. 1, Gothapatna, Bhubaneswar, Odisha 751003",
+                courses: ["PGDM", "Executive PGDM", "FPM"],
+                website: "https://imibh.edu.in"
+            },
+            "gibbs": {
+                name: "Global Institute of Business Studies (GIBS)",
+                image: "images/gibs.jpg",
+                description: "GIBS Bangalore offers globally recognized MBA programs with an emphasis on business ethics and leadership.",
+                address: "Bannerghatta Main Road, Bangalore, Karnataka 560083",
+                courses: ["MBA", "Executive MBA", "PGDM"],
+                website: "https://www.gibs.edu.in"
+            },
+            "iim-lucknow": {
+                name: "IIM Lucknow",
+                image: "images/iim-lucknow.jpg",
+                description: "IIM Lucknow is one of the top management institutes in India, offering world-class MBA programs.",
+                address: "Prabandh Nagar, IIM Road, Lucknow, Uttar Pradesh 226013",
+                courses: ["MBA", "PGP", "Executive MBA"],
+                website: "https://www.iiml.ac.in"
+            },
+            "iim-indore": {
+                name: "IIM Indore",
+                image: "images/iim-indore.jpg",
+                description: "IIM Indore is a premier management institute offering MBA and executive education programs.",
+                address: "Prabandh Shikhar, Rau-Pithampur Road, Indore, Madhya Pradesh 453556",
+                courses: ["MBA", "PGP", "Executive MBA"],
+                website: "https://www.iimidr.ac.in"
+            },
+            "nirma": {
+                name: "Nirma University Institute of Management",
+                image: "images/nirma.jpg",
+                description: "Nirma University offers top-notch management programs, focusing on practical exposure and leadership skills.",
+                address: "Sarkhej-Gandhinagar Highway, Ahmedabad, Gujarat 382481",
+                courses: ["MBA", "Executive MBA", "Ph.D."],
+                website: "https://management.nirmauni.ac.in"
+            }
+        };
+
+        // Get the college query parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const collegeKey = urlParams.get('college');
+
+        // Update the page content with the corresponding college data
+        if (collegeKey && collegeData[collegeKey]) {
+            document.getElementById('college-name').textContent = collegeData[collegeKey].name;
+            document.getElementById('college-img').src = collegeData[collegeKey].image;
+            document.getElementById('college-description').textContent = collegeData[collegeKey].description;
+            document.getElementById('college-address').textContent = collegeData[collegeKey].address;
+            
+            // Add courses to the list
+            const coursesList = document.getElementById('college-courses');
+            collegeData[collegeKey].courses.forEach(course => {
+                let li = document.createElement('li');
+                li.textContent = course;
+                coursesList.appendChild(li);
+            });
+
+            document.getElementById('college-website').href = collegeData[collegeKey].website;
+        } else {
+            document.getElementById('college-name').textContent = "College not found";
+            document.getElementById('college-description').textContent = "Sorry, the college you're looking for is not available.";
+        }
+    </script>
+</body>
+</html>

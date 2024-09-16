@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Search</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <!-- Header with logo and title -->
+    <header>
+        <img src="images/logo.png" alt="Campus Logo" class="logo">
+        <h1>Campus Search</h1>
+    </header>
+
+    <!-- Search section with a search button -->
+    <section id="search">
+        <h2>Your Gateway to Higher Learning</h2> <!-- Updated slogan -->
+        <form action="result.html" method="GET">
+            <label for="search-bar" style="color: white;">Search Colleges:</label>
+            <input type="text" id="search-bar" name="query" placeholder="Type college name..." oninput="showSuggestions(this.value)">
+            <ul id="suggestions" class="suggestions-list"></ul> <!-- Live suggestions -->
+            <button type="submit" style="margin-left: 10px;">Search</button>
+        </form>
+    </section>
+
+    <!-- Section displaying some popular colleges with multiple rows -->
+    <section id="popular-colleges">
+        <h2>Explore Top Colleges</h2>
+        <div class="college-list">
+            <!-- College 1 -->
+            <div class="college">
+                <a href="result.html?college=iima">
+                    <img src="images/iim ahemdabad.jpeg" alt="IIM Ahmedabad">
+                    <p>IIM Ahmedabad</p>
+                </a>
+            </div>
+
+            <!-- College 2 -->
+            <div class="college">
+                <a href="result.html?college=iitb">
+                    <img src="images/iitb.jpeg" alt="IIT Bombay">
+                    <p>IIT Bombay</p>
+                </a>
+            </div>
+
+            <div class="college">
+                <a href="result.html?college=iitd">
+                    <img src="images/iit delhi.jpg" alt="Indian Institute of Technology, Delhi">
+                    <p>Indian Institute of Technology, Delhi</p>
+                </a>
+            </div>
+
+            <!-- College 3 -->
+            <div class="college">
+                <a href="result.html?college=xlri">
+                    <img src="images/xlri.jpeg" alt="XLRI Jamshedpur">
+                    <p>XLRI Jamshedpur</p>
+                </a>
+            </div>
+
+            <!-- College 4 -->
+            <div class="college">
+                <a href="result.html?college=bits">
+                    <img src="images/bits pilani.jpg" alt="BITS Pilani">
+                    <p>BITS Pilani</p>
+                </a>
+            </div>
+
+            <!-- College 5 -->
+            <div class="college">
+                <a href="result.html?college=sibm">
+                    <img src="images/sibm.jpg" alt="Symbiosis Institute of Business Management">
+                    <p>Symbiosis Institute of Business Management</p>
+                </a>
+            </div>
+
+
+            <div class="college">
+                <a href="result.html?college=iitm">
+                    <img src="images/iitm.jpg" alt="Indian Institute of Technology, Madras">
+                    <p>Indian Institute of Technology, Madras</p>
+                </a>
+            </div>
+
+            <div class="college">
+                <a href="result.html?college=iimb">
+                    <img src="images/iim bangalore.jpg" alt="Indian Institute of Management, Bangalore">
+                    <p>Indian Institute of Management, Bangalore</p>
+                </a>
+            </div>
+
+            <div class="college">
+                <a href="result.html?college=isbf">
+                    <img src="images/isbh.jpg" alt="Indian School of Business, Hyderabad">
+                    <p>Indian School of Business, Hyderabad</p>
+                </a>
+            </div>
+
+            <div class="college">
+                <a href="result.html?college=fms">
+                    <img src="images/fms.jpg" alt="Faculty of Management Studies, Delhi">
+                    <p>Faculty of Management Studies, Delhi</p>
+                </a>
+            </div>
+
+            
+        </div>
+    </section>
+
+    <!-- Footer with links -->
+    <footer>
+        <p>&copy; 2024 Campus Search. All rights reserved.</p>
+        <nav>
+            <ul>
+                <li><a href="contact.html" style="color: white;">Contact Us</a></li>
+                <li><a href="index.html" style="color: white;">Home</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>
